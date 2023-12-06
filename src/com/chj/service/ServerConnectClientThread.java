@@ -7,8 +7,11 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.security.PublicKey;
 import java.util.HashMap;
 import java.util.Iterator;
+
+import static com.chj.service.ManageClientThreads.UserPk;
 
 public class ServerConnectClientThread extends Thread {
 
@@ -76,9 +79,16 @@ public class ServerConnectClientThread extends Thread {
                                     new ObjectOutputStream(hm.get(onLineUserId).getSocket().getOutputStream());
                             oos.writeObject(message);
                         }
-
                     }
-
+                }
+                else if(message.getMesType().equals(MessageType.MESSAGE_GET_PK)){
+                    message.setPk(UserPk.get(message.getGetter()));
+                    ObjectOutputStream oos = new ObjectOutputStream(ManageClientThreads.getServerConnectClientThread(message.getSender()).getSocket().getOutputStream());
+                    oos.writeObject(message);
+                }
+                else if(message.getMesType().equals(MessageType.MESSAGE_SEND_PK)){
+                    UserPk.put(message.getSender(), message.getPk());//将公钥加入到集合中
+                    System.out.println(userId + UserPk.get(userId));
                 } else if (message.getMesType().equals(MessageType.MESSAGE_FILE_MES)) {
                     //根据getter id 获取到对应的线程，将message对象转发
                     ObjectOutputStream oos =
@@ -90,6 +100,7 @@ public class ServerConnectClientThread extends Thread {
                     System.out.println(message.getSender() + " 退出");
                     //将这个客户端对应线程，从集合删除.
                     ManageClientThreads.removeServerConnectClientThread(message.getSender());
+                    ManageClientThreads.removePk(message.getSender());
                     socket.close();//关闭连接
                     //退出线程
                     break;

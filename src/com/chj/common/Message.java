@@ -1,6 +1,8 @@
 package com.chj.common;
 
 import java.io.Serializable;
+import java.security.PublicKey;
+
 public class Message implements Serializable {
     private static final long serialVersionUID = 1L;
     private String sender;//发送者
@@ -8,12 +10,15 @@ public class Message implements Serializable {
     private String content;//消息内容
     private String sendTime;//发送时间
     private String mesType;//消息类型[可以在接口定义消息类型]
+    private PublicKey pk;
 
     //进行扩展 和文件相关的成员
     private byte[] fileBytes;
     private int fileLen = 0;
     private String dest; //将文件传输到哪里
     private String src; //源文件路径
+
+    private byte[] secretKey;
 
     public byte[] getFileBytes() {
         return fileBytes;
@@ -85,5 +90,21 @@ public class Message implements Serializable {
 
     public void setSendTime(String sendTime) {
         this.sendTime = sendTime;
+    }
+
+    public PublicKey getPk() {
+        return pk;
+    }
+
+    public void setPk(PublicKey pk) {
+        this.pk = pk;
+    }
+
+    public byte[] getSecretKey() {
+        return secretKey;
+    }
+
+    public void setSecretKey(byte[] secretKey) {
+        this.secretKey = secretKey;
     }
 }
