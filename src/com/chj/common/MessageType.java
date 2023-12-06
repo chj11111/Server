@@ -9,5 +9,6 @@ public interface MessageType {
     String MESSAGE_CLIENT_EXIT = "6"; //客户端请求退出
     String MESSAGE_TO_ALL_MES = "7"; //群发消息报
     String MESSAGE_FILE_MES = "8"; //文件消息(发送文件)
+    String MESSAGE_SEND_PK = "9"; //发送公钥
 
 }

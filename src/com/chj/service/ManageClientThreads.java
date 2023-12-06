@@ -1,10 +1,15 @@
 package com.chj.service;
 
+import com.chj.common.User;
+
+import java.security.PublicKey;
 import java.util.HashMap;
 import java.util.Iterator;
 
 public class ManageClientThreads {
     private static HashMap<String, ServerConnectClientThread> hm = new HashMap<>();
+
+    public static HashMap<String, PublicKey> UserPk = new HashMap<>();
 
 
     //返回 hm
@@ -39,4 +44,17 @@ public class ManageClientThreads {
         }
         return  onlineUserList;
     }
+
+
+
+
+    //根据UserID获取对应公钥
+    public static PublicKey getUserPk(String userId) {
+        return UserPk.get(userId);
+    }
+
+    public static void removePk(String userId){
+        UserPk.remove(userId);
+    }
+
 }
