@@ -20,9 +20,10 @@ public class HuffmanNode implements Comparable<HuffmanNode> {
     public HuffmanNode(){
         HashMap<Character, Integer> frequencyMap = new HashMap<>();
 
-        char[] symbols = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
+        char[] symbols = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T',
+                'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
                 'u', 'v', 'w', 'x', 'y', 'z', ' ','1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '\\'};
-        int[] freq = {12, 3, 12, 45, 5, 12, 23, 213, 44, 55, 14, 78, 90, 11, 122, 89, 22, 12, 11, 44, 57, 90, 99, 78, 76, 101, 108,
+        int[] freq = {112, 13, 112, 145, 15, 121, 123, 213, 414, 515, 114, 178, 910, 111, 122, 819, 122, 121, 111, 414, 517, 910, 919, 718, 716, 101, 12, 3, 12, 45, 5, 12, 23, 213, 44, 55, 14, 78, 90, 11, 122, 89, 22, 12, 11, 44, 57, 90, 99, 78, 76, 101, 108,
                 34, 37, 78, 8, 2, 4, 8, 9, 10, 123, 29};
 
         for (int i = 0; i < symbols.length; i++) frequencyMap.put(symbols[i], freq[i]);
