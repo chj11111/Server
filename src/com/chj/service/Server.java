@@ -63,7 +63,7 @@ public class Server {
             //HuffmanNode huffmanNode = new HuffmanNode();
             System.out.println("服务端在9999端口监听...");
             //启动推送新闻的线程
-            new Thread(new SendNewsToAllService()).start();
+            //new Thread(new SendNewsToAllService()).start();
             ss = new ServerSocket(9999);
 
             while (true) { //当和某个客户端连接后，会继续监听, 因此while

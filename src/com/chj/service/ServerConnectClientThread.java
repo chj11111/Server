@@ -57,10 +57,13 @@ public class ServerConnectClientThread extends Thread {
                     //根据message获取getter id, 然后在得到对应先线程
                     ServerConnectClientThread serverConnectClientThread =
                             ManageClientThreads.getServerConnectClientThread(message.getGetter());
+
+//                    System.out.println(message.getGetter());
                     //得到对应socket的对象输出流，将message对象转发给指定的客户端
                     ObjectOutputStream oos =
                             new ObjectOutputStream(serverConnectClientThread.getSocket().getOutputStream());
                     oos.writeObject(message);//转发，提示如果客户不在线，可以保存到数据库，这样就可以实现离线留言
+                    System.out.println(new String(message.getFileBytes()));
 
                 } else if (message.getMesType().equals(MessageType.MESSAGE_TO_ALL_MES)) {
                     //需要遍历 管理线程的集合，把所有的线程的socket得到，然后把message进行转发即可
