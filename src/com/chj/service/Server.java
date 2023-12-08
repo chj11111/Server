@@ -26,23 +26,17 @@ public class Server {
 
     static { //在静态代码块，初始化 validUsers
 
-        validUsers.put("lll", new User("lll", "abc"));
+        validUsers.put("lx", new User("lx", "020511"));
         validUsers.put("200", new User("200", "123456"));
         validUsers.put("300", new User("300", "123456"));
-        validUsers.put("至尊宝", new User("至尊宝", "123456"));
-        validUsers.put("紫霞仙子", new User("紫霞仙子", "123456"));
-        validUsers.put("菩提老祖", new User("菩提老祖", "123456"));
+        validUsers.put("chj", new User("chj", "020511"));
+        validUsers.put("400", new User("400", "123456"));
+        validUsers.put("100", new User("100", "123456"));
 
     }
 
     //验证用户是否有效的方法
     private boolean checkUser(String userId, String passwd) {
-
-//        HuffmanNode huffmanNode = new HuffmanNode();
-//
-//        userId = huffmanNode.DecodeTxT(userId);
-//
-//        passwd = huffmanNode.DecodeTxT(passwd);
 
         User user = validUsers.get(userId);
         //过关的验证方式
@@ -60,10 +54,8 @@ public class Server {
         try {
             HuffmanNode huffmanNode = new HuffmanNode();
 
-            //HuffmanNode huffmanNode = new HuffmanNode();
             System.out.println("服务端在9999端口监听...");
-            //启动推送新闻的线程
-            //new Thread(new SendNewsToAllService()).start();
+
             ss = new ServerSocket(9999);
 
             while (true) { //当和某个客户端连接后，会继续监听, 因此while
@@ -77,11 +69,8 @@ public class Server {
                         new ObjectOutputStream(socket.getOutputStream());
                 User u = (User) ois.readObject();//读取客户端发送的User对象
 
-                //System.out.println(u.getUserId() + ":" + u.getPasswd());
-
                 u = new User(huffmanNode.DecodeTxT(u.getUserId()), huffmanNode.DecodeTxT(u.getPasswd()));
 
-                //System.out.println(u.getUserId() + ":" + u.getPasswd());
                 //创建一个Message对象，准备回复客户端
                 Message message = new Message();
 
